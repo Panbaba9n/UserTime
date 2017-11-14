@@ -17,7 +17,7 @@
   function MainController(LocalStorage, QueryService) {
 
     // 'controller as' syntax
-    var self = this;
+    var vm = this;
 
 
     ////////////  function definitions
@@ -31,7 +31,29 @@
     //   .then(function(ovocie) {
     //     self.ovocie = ovocie.data;
     //   });
-  }
+  };
+
+
+  // angular
+  //   .module('boilerplate')
+  //   .controller('UsersController', UsersController);
+
+  // UsersController.$inject = ['LocalStorage', 'QueryService', 'Users'];
+
+
+  // function UsersController(LocalStorage, QueryService, Users) {
+
+  //   // 'controller as' syntax
+  //   var vm = this;
+
+  //   vm.usersList = Users.query();
+
+
+  //   ////////////  function definitions
+
+
+
+  // }
 
 
 })();

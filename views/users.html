@@ -1,0 +1,14 @@
+<div class="container cf">
+	<p>Total number of users: {{users.usersList.length}}</p>
+	<div class="users-wrap">
+		<div class="user" ng-repeat="user in users.usersList">
+			<a ui-sref="users({ userIndex: $index })">
+				<span>{{user.firstName}}</span>
+				<span>{{user.lastName}}</span>
+				<span>timeOn: {{user.timeOn}}</span>
+				<span>timeOff: {{user.timeOff}}</span>
+				<span>(delete)index: {{$index}}</span>
+			</a>
+		</div>
+	</div>
+</div>

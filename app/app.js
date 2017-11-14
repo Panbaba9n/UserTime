@@ -17,13 +17,18 @@
    */
   angular
     .module('boilerplate', [
-      'ngRoute'
+      'ui.router',
+      'ngResource',
+
+      'core',
+      'users',
+      'usersDetail'
     ])
     .config(config);
 
   // safe dependency injection
   // this prevents minification issues
-  config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider'];
+  config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
   /**
    * App routing
@@ -32,32 +37,27 @@
    * into separate file
    * 
    */
-  function config($routeProvider, $locationProvider, $httpProvider, $compileProvider) {
+  function config($stateProvider, $urlRouterProvider) {
 
-    $locationProvider.html5Mode(false);
+    $urlRouterProvider.otherwise('/');
 
     // routes
-    $routeProvider
-      .when('/', {
+    $stateProvider
+      .state('home', {
+        url: '/',
         templateUrl: 'views/home.html',
         controller: 'MainController',
-        controllerAs: 'main'
+        controllerAs: 'home'
       })
-      .when('/contact', {
+      .state('contact', {
+        url: '/contact',
         templateUrl: 'views/contact.html',
         controller: 'MainController',
-        controllerAs: 'main'
-      })
-      .when('/setup', {
-        templateUrl: 'views/setup.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      })
-      .otherwise({
-        redirectTo: '/'
+        controllerAs: 'home'
       });
 
-    $httpProvider.interceptors.push('authInterceptor');
+
+    // $httpProvider.interceptors.push('authInterceptor');
 
   }
 
@@ -67,49 +67,49 @@
    * or handle what should happend on 40x, 50x errors
    * 
    */
-  angular
-    .module('boilerplate')
-    .factory('authInterceptor', authInterceptor);
+  // angular
+  //   .module('boilerplate')
+  //   .factory('authInterceptor', authInterceptor);
 
-  authInterceptor.$inject = ['$rootScope', '$q', 'LocalStorage', '$location'];
+  // authInterceptor.$inject = ['$rootScope', '$q', 'LocalStorage', '$location'];
 
-  function authInterceptor($rootScope, $q, LocalStorage, $location) {
+  // function authInterceptor($rootScope, $q, LocalStorage, $location) {
 
-    return {
+  //   return {
 
-      // intercept every request
-      request: function(config) {
-        config.headers = config.headers || {};
-        return config;
-      },
+  //     // intercept every request
+  //     request: function(config) {
+  //       config.headers = config.headers || {};
+  //       return config;
+  //     },
 
-      // Catch 404 errors
-      responseError: function(response) {
-        if (response.status === 404) {
-          $location.path('/');
-          return $q.reject(response);
-        } else {
-          return $q.reject(response);
-        }
-      }
-    };
-  }
+  //     // Catch 404 errors
+  //     responseError: function(response) {
+  //       if (response.status === 404) {
+  //         $location.path('/');
+  //         return $q.reject(response);
+  //       } else {
+  //         return $q.reject(response);
+  //       }
+  //     }
+  //   };
+  // }
 
 
   /**
    * Run block
    */
-  angular
-    .module('boilerplate')
-    .run(run);
+  // angular
+  //   .module('boilerplate')
+  //   .run(run);
 
-  run.$inject = ['$rootScope', '$location'];
+  // run.$inject = ['$rootScope', '$location'];
 
-  function run($rootScope, $location) {
+  // function run($rootScope, $location) {
 
     // put here everything that you need to run on page load
 
-  }
+  // }
 
 
 })();

@@ -1,47 +1,33 @@
-<h2 class="text-center">AngularJS Boilerplate</h2>
+<h2 class="text-center">Users Time</h2>
 
-<!-- slider directive -->
-<div myslider>
-    <ul class="slider">
-        <li class="image-slider">
-            <img src="https://unsplash.imgix.net/photo-1426200830301-372615e4ac54?fit=crop&fm=jpg&h=725&q=75&w=1050" alt="Image">
-        </li>
-        <li class="image-slider">
-            <img src="https://unsplash.imgix.net/photo-1421977870504-378093748ae6?fit=crop&fm=jpg&h=700&q=75&w=1050" alt="Image">
-        </li>
-        <li class="image-slider">
-            <img src="https://ununsplash.imgix.net/photo-1421757295538-9c80958e75b0?fit=crop&fm=jpg&h=700&q=75&w=1050" alt="Image">
-        </li>
-        <li class="image-slider">
-            <img src="https://unsplash.imgix.net/photo-1420745981456-b95fe23f5753?fit=crop&fm=jpg&h=700&q=75&w=1050" alt="Image">
-        </li>
-        <li class="image-slider">
-            <img src="https://download.unsplash.com/photo-1415871989540-61fe9268d3c8" alt="Image">
-        </li>
-    </ul>
-</div>
+<p>lol: {{home.lol}}</p>
+<h1>Login please!</h1>
+<div>
+    <form action="" name="loginForm">
+        <div ng-class="{ 'has-error' : loginForm.username.$invalid }">
+            <label>Username:</label>
+            <input type="username" name="username" class="" ng-model="$ctrl.user.username" placeholder="Username" required="" autofocus="">
+            <p ng-show="loginForm.username.$invalid" >Enter a valid username</p>
+        </div>
+        
+        <br>
 
-<h3>Features</h3>
-<div class="container cf">
-    <div>
-        <ul>
-            <li>* SASS support including sourceMaps</li>
-            <li>* Minimal CSS styling of the view</li>
-            <li>* Gulp watch, build and local server tasks</li>
-            <li>* Responsive navigation</li>
-            <li>* Owl slider directive</li>
-            <li>* Responsive navigation</li>
-            <li>* localStorage service for set, get, remove data</li>
-            <li>* queryService $http wrapper to handle calls</li>
-            <li>* clear folder structure</li>
-            <li>* less than 10 request in build version</li>
-            <li>* minified CSS and JS build files</li>
-            <li>* google analytics snippet</li>
-        </ul>
-    </div>
-</div>
+        <div ng-class="{ 'has-error' : loginForm.password.$invalid }">
+            <label>Password:</label>
+            <input type="password" name="password" class="" ng-model="$ctrl.user.password"  placeholder="Password" required="" ng-minlength="4">
+            <p ng-show="loginForm.password.$invalid" >Enter a password</p>
+            <p ng-show="loginForm.password.$error.minlength">Min password length is 4 characters.</p>
+        </div>
 
-<div class="text-center">
-    <small>Images courtesy of <a target="_blank" href="http://unsplash.com">unsplash.com</a></small>
+        <br>
+        <label for="">
+            <a href="#">Sign In</a>
+        </label>
+        <br>
+        <button type="button" ng-click="$ctrl.sendData()" ng-disabled="!$ctrl.user.username || !$ctrl.user.password">Login</button>
+    </form>
 </div>
+<h2 ng-show="$ctrl.success">Login completed successfully!</h2>
+<h2 ng-show="$ctrl.message">{{$ctrl.message}}</h2>
+
 

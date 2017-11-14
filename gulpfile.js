@@ -240,7 +240,7 @@ gulp.task('default', ['browser-sync', 'sass', 'minify-css'], function() {
     }
   });
   gulp.watch(['*.html', 'components/**/*.html', 'views/*.html'], ['bs-reload']);
-  gulp.watch(['app/*.js', 'components/**/*.js', 'js/*.js'], ['bs-reload']);
+  gulp.watch(['app/**/*.js', 'components/**/*.js', 'js/*.js'], ['bs-reload']);
   gulp.watch('styles/**/*.scss', ['sass', 'minify-css']);
 });
 
