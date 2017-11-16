@@ -20,9 +20,13 @@
       'ui.router',
       'ngResource',
 
+      'ngMaterial',
+      'LocalStorageModule',
+
       'core',
       'users',
-      'usersDetail'
+      'usersDetail',
+      'security'
     ])
     .config(config);
 
@@ -53,7 +57,8 @@
         url: '/contact',
         templateUrl: 'views/contact.html',
         controller: 'MainController',
-        controllerAs: 'home'
+        controllerAs: 'home',
+        isAuthentificaded: true
       });
 
 
@@ -99,17 +104,28 @@
   /**
    * Run block
    */
-  // angular
-  //   .module('boilerplate')
-  //   .run(run);
+  angular
+    .module('boilerplate')
+    .run(run);
 
-  // run.$inject = ['$rootScope', '$location'];
+  run.$inject = ['$rootScope', 'AuthTest', '$state', '$interval'];
 
-  // function run($rootScope, $location) {
+  function run($rootScope, AuthTest, $state, $interval) {
 
-    // put here everything that you need to run on page load
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+      if (toState.isAuthentificaded) {
+        // nothing to do
+      } else if (toState.name !== 'home' && !AuthTest.isAuthentificaded()) {
+        event.preventDefault();
+        $state.go('home');
+      }
+    });
 
-  // }
+    $interval( function(){
+      delete localStorage['ls.token'];
+    }, 1000*20);
+
+  }
 
 
 })();

@@ -1,13 +1,19 @@
 <div class="container cf">
-      <p>Total number of users: {{usersDetail.usersList.length}}</p>
-      <p>{{usersDetail.test}}</p>
-      <div class="users-wrap">
-          <div class="user" ng-repeat="user in usersDetail.usersList">
-                <span>{{user.firstName}}</span>
-                <span>{{user.lastName}}</span>
-                <span>timeOn: {{user.timeOn}}</span>
-                <span>timeOff: {{user.timeOff}}</span>
-                <span>(delete)index: {{$index}}</span>
-          </div>
+  <p>{{usersDetail.test}}</p>
+  <div class="users-detail-wrap">
+    <div class="users-detail-name">
+      <p>
+        <span>{{usersDetail.userInfo.firstName}}</span>
+        <span>{{usersDetail.userInfo.lastName}}</span>
+      </p>
     </div>
+    <div class="users-detail-time">
+      <div class="time-on">
+        <span>{{usersDetail.userInfo.timeOn}}</span>
+      </div>
+      <div class="time-off">
+        <span>{{usersDetail.userInfo.timeOff}}</span>
+      </div>
+    </div>
+  </div>
 </div>

@@ -2,3 +2,4 @@
 node_modules/
 private/libs/
 _build/
+server/node_modules/

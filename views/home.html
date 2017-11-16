@@ -1,33 +1,35 @@
-<h2 class="text-center">Users Time</h2>
+<md-content layout-padding>
+	<h2 class="text-center">Users Time</h2>
+	<form name="loginForm">
 
-<p>lol: {{home.lol}}</p>
-<h1>Login please!</h1>
-<div>
-    <form action="" name="loginForm">
-        <div ng-class="{ 'has-error' : loginForm.username.$invalid }">
-            <label>Username:</label>
-            <input type="username" name="username" class="" ng-model="$ctrl.user.username" placeholder="Username" required="" autofocus="">
-            <p ng-show="loginForm.username.$invalid" >Enter a valid username</p>
-        </div>
-        
-        <br>
-
-        <div ng-class="{ 'has-error' : loginForm.password.$invalid }">
-            <label>Password:</label>
-            <input type="password" name="password" class="" ng-model="$ctrl.user.password"  placeholder="Password" required="" ng-minlength="4">
-            <p ng-show="loginForm.password.$invalid" >Enter a password</p>
-            <p ng-show="loginForm.password.$error.minlength">Min password length is 4 characters.</p>
-        </div>
-
-        <br>
-        <label for="">
-            <a href="#">Sign In</a>
-        </label>
-        <br>
-        <button type="button" ng-click="$ctrl.sendData()" ng-disabled="!$ctrl.user.username || !$ctrl.user.password">Login</button>
-    </form>
-</div>
-<h2 ng-show="$ctrl.success">Login completed successfully!</h2>
-<h2 ng-show="$ctrl.message">{{$ctrl.message}}</h2>
+		<div layout="column">
+			<md-input-container flex="50">
+				<label>Login</label>
+				<input required type="text" name="login" ng-model="home.user.username">
+				<div ng-messages="loginForm.Login.$error">
+					<div ng-message="required">This is required.</div>
+				</div>
+			</md-input-container>
 
 
+			<md-input-container flex="50">
+			<!-- class="md-block" -->
+				<label>Password</label>
+				<input required type="password" name="password" ng-model="home.user.password"
+				minlength="4" maxlength="20" />
+
+				<div ng-messages="loginForm.password.$error" role="alert">
+					<div ng-message-exp="['required', 'minlength', 'maxlength']">
+						Your password must be between 4 and 20 characters long and look like an password.
+					</div>
+				</div>
+			</md-input-container>
+		</div>
+
+		<div>
+			<md-button type="submit" class="md-raised md-primary" ng-click="home.enterUser()"
+			ng-disabled="!home.user.username || !home.user.password">Submit</md-button>
+		</div>
+
+	</form>
+</md-content>

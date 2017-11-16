@@ -1,14 +1,50 @@
-<div class="container cf">
-	<p>Total number of users: {{users.usersList.length}}</p>
-	<div class="users-wrap">
-		<div class="user" ng-repeat="user in users.usersList">
-			<a ui-sref="users({ userIndex: $index })">
-				<span>{{user.firstName}}</span>
-				<span>{{user.lastName}}</span>
-				<span>timeOn: {{user.timeOn}}</span>
-				<span>timeOff: {{user.timeOff}}</span>
-				<span>(delete)index: {{$index}}</span>
-			</a>
-		</div>
+<div>
+	<div class="table" layout="row">
+		<ng-container layout="column" flex>
+			<div class="header-cell" matColumnDef="firstName">First Name</div>
+			<div class="cell" ng-repeat="user in users.usersList">
+				<md-button ui-sref="usersDetail({ userIndex: $index })" aria-label="{{user.firstName}}">{{user.firstName}}</md-button>
+				<md-divider ng-if="!$last"></md-divider>
+			</div>
+		</ng-container>
+		<ng-container layout="column" flex>
+			<div class="header-cell" matColumnDef="lastName">Last Name</div>
+			<div class="cell" ng-repeat="user in users.usersList">
+				<md-button ui-sref="usersDetail({ userIndex: $index })" aria-label="{{user.lastName}}">{{user.lastName}}</md-button>
+				<md-divider ng-if="!$last"></md-divider>
+			</div>
+		</ng-container>
+		<ng-container layout="column" flex>
+			<div class="header-cell" matColumnDef="timeOn">Time On</div>
+			<div class="cell" ng-repeat="user in users.usersList">
+				<md-button ui-sref="usersDetail({ userIndex: $index })" aria-label="{{user.timeOn}}">{{user.timeOn}}</md-button>
+				<md-divider ng-if="!$last"></md-divider>
+			</div>
+		</ng-container>
+		<ng-container layout="column" flex>
+			<div class="header-cell" matColumnDef="timeOff">Time Off</div>
+			<div class="cell" ng-repeat="user in users.usersList">
+				<md-button ui-sref="usersDetail({ userIndex: $index })" aria-label="{{user.timeOff}}">{{user.timeOff}}</md-button>
+				<md-divider ng-if="!$last"></md-divider>
+			</div>
+		</ng-container>
 	</div>
 </div>
+
+
+<div class="container">
+	<p>Total number of users: {{users.usersList.length}}</p>
+</div>
+
+
+<!-- <div class="users-wrap">
+	<div class="user" ng-repeat="user in users.usersList">
+		<a ui-sref="usersDetail({ userIndex: $index })">
+			<span>{{user.firstName}}</span>
+			<span>{{user.lastName}}</span>
+			<span>timeOn: {{user.timeOn}}</span>
+			<span>timeOff: {{user.timeOff}}</span>
+			<span>(delete)index: {{$index}}</span>
+		</a>
+	</div>
+</div> -->

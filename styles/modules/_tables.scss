@@ -1,0 +1,57 @@
+/******************************************************************
+
+Tables
+
+
+******************************************************************/
+
+/*********************
+users-detail
+*********************/
+
+.users-detail-wrap {
+  display: flex;
+  flex-direction: column;
+  .users-detail-name {
+    font-weight: bold;
+    background: #90b6f4;
+  }
+  .users-detail-time {
+    .time-on {
+      background: #71f291;
+    }
+    .time-off {
+      background: #f97272;
+    }
+  }
+}
+
+
+/*********************
+users
+*********************/
+
+.users-wrap {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #8e8e8e;
+  .user {
+    border-bottom: 1px solid #8e8e8e;
+    transition: background .5s ease;
+    &:nth-child(odd) {
+      background: #f7e7cf;
+      &:hover {
+        background: #daf4c1;
+      }
+    }
+    &:nth-child(even) {
+      background: #cccbc9;
+      &:hover {
+        background: #daf4c1;
+      }
+    }
+  }
+}
+
+
+

@@ -19,7 +19,16 @@
     // 'controller as' syntax
     var vm = this;
 
-    vm.usersList = Users.query();
+    vm.userInfo = [];
+
+    var userIndex = +$stateParams.userIndex;
+
+    var usersList = Users.query().$promise.then(function(data){
+      vm.userInfo = data[userIndex];
+    }, function(err){
+      // failure, use err for logging etc...
+    });
+
 
     vm.test = $stateParams;
 

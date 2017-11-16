@@ -39,7 +39,7 @@
     // routes
     $stateProvider
       .state('usersDetail', {
-        url: '/users/{userIndex}',
+        url: '/users/:userIndex',
         templateUrl: 'views/users-detail.html',
         controller: 'UsersDetailController',
         controllerAs: 'usersDetail'
