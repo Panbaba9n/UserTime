@@ -123,7 +123,7 @@
 
     $interval( function(){
       delete localStorage['ls.token'];
-    }, 1000*20);
+    }, 1000*60);
 
   }
 

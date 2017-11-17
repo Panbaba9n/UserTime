@@ -11,6 +11,17 @@ var auth = require('./routes/auth');
 
 var app = express();
 
+
+//Set up mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb://admin:local@ds113136.mlab.com:13136/testuser';
+mongoose.connect(mongoDB, {
+  useMongoClient: true
+});
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -44,5 +55,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
