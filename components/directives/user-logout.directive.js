@@ -11,19 +11,19 @@
    * <main-nav><main-nav/>
    *
    */
-  angular
-    .module('logout')
-    .directive('userLogout', userLogout);
+  // angular
+  //   .module('logout')
+  //   .directive('userLogout', userLogout);
 
-  function userLogout() {
+  // function userLogout() {
 
-    // Definition of directive
-    var directiveDefinitionObject = {
-      restrict: 'E',
-      templateUrl: 'components/directives/user-logout.html'
-    };
+  //   // Definition of directive
+  //   var directiveDefinitionObject = {
+  //     restrict: 'E',
+  //     templateUrl: 'components/directives/user-logout.html'
+  //   };
 
-    return directiveDefinitionObject;
-  }
+  //   return directiveDefinitionObject;
+  // }
 
 })();

@@ -3212,7 +3212,6 @@ a:link,a:visited:link{-webkit-tap-highlight-color:rgba(0,0,0,.3)}
 #content{margin-top:1.5em}
 .logout-wrap{display:flex;justify-content:flex-end;align-items:center}
 .footer{clear:both;background-color:#231f20;color:#f8f9fa}
-*{box-sizing:border-box}
 @media only screen and (min-width:481px){.container{width:480px}
 }
 @media only screen and (min-width:768px){body{font-family:"Open Sans",Helvetica,Arial,sans-serif}

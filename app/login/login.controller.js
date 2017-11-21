@@ -26,7 +26,7 @@
     vm.isAuth = false;
 
     vm.enterUser = enterUser;
-    vm.exitUser = exitUser;
+    // vm.exitUser = exitUser;
     vm.logout = AuthTest.isAuthentificaded();
 
     
@@ -54,12 +54,12 @@
       });
     };
 
-    function exitUser() {
-      AuthTest.logout();
-      vm.user = {};
-      vm.message = false;
-      vm.logout = false;
-    };
+    // function exitUser() {
+    //   AuthTest.logout();
+    //   vm.user = {};
+    //   vm.message = false;
+    //   vm.logout = false;
+    // };
 
     function saveToken(token) {
       return AuthTest.saveToken(token);
@@ -68,14 +68,6 @@
     function saveUsername(username) {
       return Memory.saveUsername(username);
     };
-
-    // function intervalDeleteToken() {
-    //   return $interval( function(){
-    //       AuthTest.logout();
-    //       Memory.logout();
-    //       $state.go('login');
-    //     }, 1000*30);
-    // };
 
     function sendToParentCtrl() {
       $scope.$emit('myevent');

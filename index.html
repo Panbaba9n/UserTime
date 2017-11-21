@@ -40,14 +40,16 @@
 		<!-- Navigation -->
 		<main-nav></main-nav>
 
-		<!-- LogOut -->
+		<!-- LogOut / registration -->
 		<section class="user-info" ng-controller="MainController as home">
 			<div class="container">
 				<md-content layout-padding>
 					<div class="logout-wrap">
 						<span>{{home.userName}}</span>
-						<md-button ng-if="home.logout"class="md-raised" ng-click="home.exitUser()"
+						<md-button ng-if="home.logout" class="md-raised" ng-click="home.exitUser()"
 						ng-disabled="!home.logout">Logout</md-button>
+						<a ng-if="!home.logout" class="md-raised" ui-sref="registration"
+						>Registration</a>
 					</div>
 				</md-content>
 			</div>
@@ -94,7 +96,8 @@
 	<script type="text/javascript" src="app/core/core.js"></script>
 	<script type="text/javascript" src="app/security/security.js"></script>
 	<script type="text/javascript" src="app/login/login.js"></script>
-	<script type="text/javascript" src="app/logout/logout.js"></script>
+	<script type="text/javascript" src="app/registration/registration.js"></script>
+	<!-- <script type="text/javascript" src="app/logout/logout.js"></script> -->
 	<script type="text/javascript" src="app/users/users.js"></script>
 	<script type="text/javascript" src="app/usersDetail/usersDetail.js"></script>
 	<script type="text/javascript" src="components/services/LocalStorage.service.js"></script>
@@ -112,6 +115,7 @@
 	<script type="text/javascript" src="app/core/core.factory.js"></script>
 	<script type="text/javascript" src="app/security/security.factory.js"></script>
 	<script type="text/javascript" src="app/login/login.controller.js"></script>
+	<script type="text/javascript" src="app/registration/registration.controller.js"></script>
 	<script type="text/javascript" src="app/users/users.controller.js"></script>
 	<script type="text/javascript" src="app/usersDetail/usersDetail.controller.js"></script>
 	<!-- endbuild -->

@@ -70,6 +70,10 @@
       login: {
         method: 'POST',
         url: 'http://localhost:8000/auth'
+      },
+      registration: {
+        method: 'POST',
+        url: 'http://localhost:8000/registration'
       }
     });
 

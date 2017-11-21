@@ -26,7 +26,8 @@
 
       'core',
       'login',
-      'logout',
+      'registration',
+      // 'logout',
       'users',
       'usersDetail',
       'security'
