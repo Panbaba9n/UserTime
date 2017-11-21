@@ -11,10 +11,10 @@
     .module('login')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['LocalStorage', 'QueryService', 'AuthTest', 'ToServer', '$interval', '$state'];
+  LoginController.$inject = ['$scope', 'LocalStorage', 'QueryService', 'AuthTest', 'ToServer', 'Memory', '$interval', '$state'];
 
 
-  function LoginController(LocalStorage, QueryService, AuthTest, ToServer, $interval, $state) {
+  function LoginController($scope, LocalStorage, QueryService, AuthTest, ToServer, Memory, $interval, $state) {
 
     // 'controller as' syntax
     var vm = this;
@@ -40,8 +40,10 @@
         vm.message = response.message;
         vm.logout = AuthTest.isAuthentificaded;
         saveToken(response.token);
+        saveUsername(vm.user.username);
         vm.isAuth = true;
-        intervalDeleteToken();
+        // intervalDeleteToken();
+        sendToParentCtrl();
         $state.go('users');
       }, function(err) {
         if(err.status == 401) {
@@ -63,11 +65,20 @@
       return AuthTest.saveToken(token);
     };
 
-    function intervalDeleteToken() {
-      return $interval( function(){
-          AuthTest.logout();
-          $state.go('home');
-        }, 1000*30);
+    function saveUsername(username) {
+      return Memory.saveUsername(username);
+    };
+
+    // function intervalDeleteToken() {
+    //   return $interval( function(){
+    //       AuthTest.logout();
+    //       Memory.logout();
+    //       $state.go('login');
+    //     }, 1000*30);
+    // };
+
+    function sendToParentCtrl() {
+      $scope.$emit('myevent');
     };
 
   };

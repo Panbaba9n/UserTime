@@ -12,7 +12,7 @@
    *
    */
   angular
-    .module('boilerplate')
+    .module('logout')
     .directive('userLogout', userLogout);
 
   function userLogout() {

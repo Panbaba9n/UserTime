@@ -9,30 +9,32 @@
     .module('core')
     .factory('Memory', Memory);
 
-  Memory.$inject = ['$http', 'LocalStorage'];
+  Memory.$inject = ['$http', 'localStorageService'];
 
 
   ////////////
 
 
-  function Memory($http, LocalStorage) {
-    var login = "admin";
-    var password = "local";
+  function Memory($http, localStorageService) {
 
     return {
-      getLogin: getLogin,
-      getPassword: getPassword
+      saveUsername: saveUsername,
+      getUsername: getUsername,
+      logout: logout
     };
 
     ////////////  function definitions
-    function getLogin() {
-      return login;
+    function saveUsername(username) {
+      localStorageService.set('username', username);
     };
 
-    function getPassword() {
-      return password;
+    function getUsername() {
+      return localStorageService.get('username');
     };
 
+    function logout() {
+      localStorageService.remove('username');
+    };
 
   };
 

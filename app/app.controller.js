@@ -11,63 +11,52 @@
     .module('boilerplate')
     .controller('MainController', MainController);
 
-  MainController.$inject = ['LocalStorage', 'QueryService', 'AuthTest', 'ToServer', '$interval', '$state'];
+  MainController.$inject = ['$scope', 'LocalStorage', 'QueryService', 'AuthTest', 'ToServer', 'Memory', '$interval', '$state'];
 
 
-  function MainController(LocalStorage, QueryService, AuthTest, ToServer, $interval, $state) {
+  function MainController($scope, LocalStorage, QueryService, AuthTest, ToServer, Memory, $interval, $state) {
 
     // 'controller as' syntax
     var vm = this;
 
-    vm.user = {};
-    vm.user.username = "";
-    vm.user.password = "";
-    vm.message = false;
-    vm.isAuth = false;
-
-    vm.enterUser = enterUser;
     vm.exitUser = exitUser;
     vm.logout = AuthTest.isAuthentificaded();
+    vm.userName = Memory.getUsername();
+    vm.intervalDeleteToken = intervalDeleteToken;
+
+    $scope.$on('myevent', scopeEvent);
 
     
     ////////////  function definitions
-
-    function enterUser() {
-      ToServer.login({}, {
-        "username": vm.user.username,
-        "password": vm.user.password
-      }, function(response){
-        vm.message = response.message;
-        vm.logout = AuthTest.isAuthentificaded;
-        saveToken(response.token);
-        vm.isAuth = true;
-        intervalDeleteToken();
-        $state.go('users');
-      }, function(err) {
-        if(err.status == 401) {
-          vm.message = err.data.message;
-        } else if (err.status == -1) {
-          vm.message = "Not connected, probably server doesn't work.";
-        }
-      });
-    };
-
     function exitUser() {
       AuthTest.logout();
-      vm.user = {};
-      vm.message = false;
+      Memory.logout();
+      vm.userName = Memory.getUsername();
       vm.logout = false;
+      $state.go('login');
     };
 
     function saveToken(token) {
       return AuthTest.saveToken(token);
     };
+    function saveUsername(username) {
+      return Memory.saveUsername(username);
+    };
 
     function intervalDeleteToken() {
       return $interval( function(){
           AuthTest.logout();
-          $state.go('home');
-        }, 1000*30);
+          Memory.logout();
+          vm.logout = AuthTest.isAuthentificaded();
+          vm.userName = Memory.getUsername();
+          $state.go('login');
+        }, 1000*60);
+    };
+
+    function scopeEvent(event, args) {
+      vm.userName = Memory.getUsername();
+      vm.logout = AuthTest.isAuthentificaded();
+      vm.intervalDeleteToken();
     };
 
   };

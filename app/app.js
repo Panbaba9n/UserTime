@@ -25,6 +25,8 @@
       'LocalStorageModule',
 
       'core',
+      'login',
+      'logout',
       'users',
       'usersDetail',
       'security'
@@ -44,7 +46,7 @@
    */
   function config($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
 
     // routes
     $stateProvider
@@ -81,9 +83,9 @@
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
       if (toState.isAuthentificaded) {
         // nothing to do
-      } else if (toState.name !== 'home' && !AuthTest.isAuthentificaded()) {
+      } else if (toState.name !== 'login' && !AuthTest.isAuthentificaded()) {
         event.preventDefault();
-        $state.go('home');
+        $state.go('login');
       }
     });
 
