@@ -4,9 +4,9 @@ var router = express.Router();
 // var users_controller = require('../controllers/usersController');
 
 var UserInfo = require('../models/users');
-
-
-var jwt = require('express-jwt');
+var authStrategy = require('../config/authStrategy');
+// console.log(authStrategy);
+// var jwt = require('express-jwt');
 
 
 /* GET home page. */
@@ -29,28 +29,66 @@ router.options('/', function(req, res, next) {
 //     res.json({"token":"lol"});
 // });
 
+
+
 router.post('/', function(req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader('Access-Control-Allow-Headers','X-Requested-With,Content-Type');
     res.setHeader("allow", "GET, POST, OPTIONS");
 
-    // Users.find({}, 'userLogin userPassword')
-    // .exec(function (err, list_users) {
-    //     if (err) { return next(err); }
-    //         //Successful, so render
-    //         res.json('auth', { users_list: list_users });
-    //         // res.render('auth', { users_list: list_users });
-    //     });
-    // console.log(Users);
+    if(req.body.username && req.body.password){
+        var username = req.body.username;
+        var password = req.body.password;
+    }
+    // usually this would be a database call:
+    // var dbUser = authStrategy.dbUsers[ _.findIndex(authStrategy.dbUsers, {username: username})];
 
-
-    var lol = 'undefined';
-    // UserInfo.find(function (err, kittens) {
-    //     if (err) return console.error(err);
-    //     lol = kittens;
+    // var dbUser = authStrategy.dbUsers.find(function(result) {
+    //     return result.username == username;
     // });
-    res.json({"token":lol});
+
+
+    var dbUser = undefined;
+    UserInfo.find({ 'login': username }, function (err, docs) {
+      if (err) {return console.error(err);}
+      dbUser = docs[0];
+      if( ! dbUser ){
+        res.status(401).json({message:"no such user found"});
+      }
+      if(dbUser.password === req.body.password) {
+        // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
+        var payload = {id: dbUser.id};
+        var token = authStrategy.jwt.sign(payload, authStrategy.jwtOptions.secretOrKey);
+        res.json({message: "ok", token: token});
+      } else {
+          res.status(401).json({message:"passwords did not match"});
+      }
+
+    });
+
+    // var dbUser = authStrategy.dbUsers.find(function(result) {
+    //     return result.username == username;
+    // });
+    // console.log(dbUser);
+
+    //===================================
+    // if( ! dbUser ){
+    //     console.log("dbUser: " + dbUser);
+    //     res.status(401).json({message:"no such user found"});
+    // }
+    // if(dbUser.password === req.body.password) {
+    //     // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
+    //     var payload = {id: dbUser.id};
+    //     var token = authStrategy.jwt.sign(payload, authStrategy.jwtOptions.secretOrKey);
+    //     res.json({message: "ok", token: token});
+    // } else {
+    //     res.status(401).json({message:"passwords did not match"});
+    // }
+    //===================================
+
+    // var lol = 'undefined';
+    // res.json({"token":lol});
 
 
 });
@@ -64,29 +102,20 @@ router.post('/', function(req, res, next) {
 //      res.sendStatus(200);
 //  });
 
-// === norm frontend prinimaet ===
-// access-control-allow-headers →x-requested-with, content-type, accept, origin, authorization, x-csrftoken, user-agent, accept-encoding
-// access-control-allow-methods →GET, POST, PUT, PATCH, DELETE, OPTIONS
-// access-control-allow-origin →*
-// access-control-max-age →86400
-// allow →POST, OPTIONS
-// connection →keep-alive
-// content-type →application/json
-// date →Thu, 16 Nov 2017 15:48:36 GMT
-// server →gunicorn/18.0
-// transfer-encoding →chunked
-// vary →Accept
-// via →1.1 vegur
-// x-frame-options →SAMEORIGIN
+
+    // UserInfo.find(function (err, kittens) {
+    //     if (err) return console.error(err);
+    //     lol = kittens;
+    // });
 
 
-// === frontend ne prinimaet ===
-// allow →GET,HEAD,POST
-// connection →keep-alive
-// content-length →13
-// content-type →text/html; charset=utf-8
-// date →Thu, 16 Nov 2017 15:49:56 GMT
-// etag →W/"d-bMedpZYGrVt1nR4x+qdNZ2GqyRo"
-// x-powered-by →Express
+    // Users.find({}, 'userLogin userPassword')
+    // .exec(function (err, list_users) {
+    //     if (err) { return next(err); }
+    //         //Successful, so render
+    //         res.json('auth', { users_list: list_users });
+    //         // res.render('auth', { users_list: list_users });
+    //     });
+    // console.log(Users);
 
 module.exports = router;

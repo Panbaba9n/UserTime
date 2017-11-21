@@ -21,6 +21,7 @@
       'ngResource',
 
       'ngMaterial',
+      'ngMessages',
       'LocalStorageModule',
 
       'core',
@@ -60,14 +61,41 @@
         controllerAs: 'home',
         isAuthentificaded: true
       });
+    }
 
 
-    // $httpProvider.interceptors.push('authInterceptor');
 
-  }
 
 
   /**
+   * Run block
+   */
+  angular
+    .module('boilerplate')
+    .run(run);
+
+  run.$inject = ['$rootScope', 'AuthTest', '$state', '$interval'];
+
+  function run($rootScope, AuthTest, $state, $interval) {
+
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+      if (toState.isAuthentificaded) {
+        // nothing to do
+      } else if (toState.name !== 'home' && !AuthTest.isAuthentificaded()) {
+        event.preventDefault();
+        $state.go('home');
+      }
+    });
+
+  }
+
+})();
+
+
+  // в $stateProvider
+  // $httpProvider.interceptors.push('authInterceptor');
+
+    /**
    * You can intercept any request or response inside authInterceptor
    * or handle what should happend on 40x, 50x errors
    * 
@@ -99,33 +127,3 @@
   //     }
   //   };
   // }
-
-
-  /**
-   * Run block
-   */
-  angular
-    .module('boilerplate')
-    .run(run);
-
-  run.$inject = ['$rootScope', 'AuthTest', '$state', '$interval'];
-
-  function run($rootScope, AuthTest, $state, $interval) {
-
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-      if (toState.isAuthentificaded) {
-        // nothing to do
-      } else if (toState.name !== 'home' && !AuthTest.isAuthentificaded()) {
-        event.preventDefault();
-        $state.go('home');
-      }
-    });
-
-    $interval( function(){
-      delete localStorage['ls.token'];
-    }, 1000*60);
-
-  }
-
-
-})();

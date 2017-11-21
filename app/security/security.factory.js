@@ -12,34 +12,26 @@
   AuthTest.$inject = ['$resource', 'localStorageService'];
 
 
-  ////////////
+  ////////////  function definitions
 
 
   function AuthTest($resource, localStorageService) {
-
     return {
       isAuthentificaded: authentificaded,
-
       saveToken: saveToken,
-      getToken: getToken
-
-      
+      getToken: getToken,
+      logout: logout
     };
 
-    ////////////  function definitions
+    ///////////
 
     function authentificaded() {
       var isAuth = false;
-      //для тестировки
-      if (localStorageService.get('token')) {
+      if ( localStorageService.get('token') ) {
        isAuth = true; 
-     }
-      // isAuth = true;
-      
+      }
       return isAuth;
     };
-
-    
 
     function saveToken(token) {
       localStorageService.set('token', token);
@@ -47,6 +39,10 @@
 
     function getToken() {
       localStorageService.get('token');
+    };
+
+    function logout() {
+      localStorageService.remove('token');
     };
 
   };
@@ -76,16 +72,6 @@
         url: 'http://localhost:8000/auth'
       }
     });
-
-
-    // Для теста отправил Get-запрос
-    // return $resource('', {}, {
-    //   login: {
-    //     method: 'GET',
-    //     url: 'http://localhost:8000/auth'
-    //   }
-    // });
-
 
   };
 

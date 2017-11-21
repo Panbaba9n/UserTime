@@ -1,5 +1,5 @@
 /**
- * Main application controller
+ * Login application controller
  *
  * You can use this controller for your whole app if it is small
  * or you can have separate controllers for each logical section
@@ -8,13 +8,13 @@
 ;(function() {
 
   angular
-    .module('boilerplate')
-    .controller('MainController', MainController);
+    .module('login')
+    .controller('LoginController', LoginController);
 
-  MainController.$inject = ['LocalStorage', 'QueryService', 'AuthTest', 'ToServer', '$interval', '$state'];
+  LoginController.$inject = ['LocalStorage', 'QueryService', 'AuthTest', 'ToServer', '$interval', '$state'];
 
 
-  function MainController(LocalStorage, QueryService, AuthTest, ToServer, $interval, $state) {
+  function LoginController(LocalStorage, QueryService, AuthTest, ToServer, $interval, $state) {
 
     // 'controller as' syntax
     var vm = this;
