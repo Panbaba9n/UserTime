@@ -29,7 +29,9 @@
       'registration',
 
       'splitModule',
-      
+      'internalPage1',
+      'internalPage2',
+
       // 'logout',
       'users',
       'usersDetail',
