@@ -6,7 +6,7 @@
    */
   angular
     // .module('login', ['ngResource', 'LocalStorageModule']);
-    .module('splitModule', [])
+    .module('internalPage2', [])
     .config(config);
 
   // safe dependency injection
@@ -24,11 +24,11 @@
 
     // routes
     $stateProvider
-      .state('splitModule', {
-        url: '/splitPage',
-        templateUrl: 'views/splitModule.html',
-        controller: 'SplitModuleController',
-        controllerAs: 'splitModule',
+      .state('splitModule.internalPage2', {
+        url: '/internalPage2',
+        template: '<h3>Internal Page 2</h3>',
+        controller: 'internalPage2Controller',
+        controllerAs: 'internalPage2',
       });
 
   }

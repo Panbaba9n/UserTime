@@ -1,0 +1,11 @@
+<h3>Internal Page 1</h3>
+<h4>Deeper level internal pages</h4>
+
+<md-button ui-sref="splitModule.internalPage1.route1" class="md-raised md-cornered">Internal Page 1 route 1</md-button>
+<md-button ui-sref="splitModule.internalPage1.route2" class="md-raised md-cornered">Internal Page 1 route 2</md-button>
+
+<div>
+	<span ui-view="viewA"></span>
+	<span style="color: orange;" layout-padding> || left & right || </span>
+	<span ui-view="viewB"></span>
+</div>
