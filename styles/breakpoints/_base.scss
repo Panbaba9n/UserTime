@@ -120,7 +120,6 @@ HEADER STYLES
 
 	a {
 		font-size: $small;
-		color: $black;
 	}
 
 	ul {
@@ -162,7 +161,7 @@ NAVIGATION STYLES
 
 		a {
 			display: block;
-			color: $white;
+			color: $text-color;
 			text-decoration: none;
 			padding: 0.75em;
 		}
@@ -211,19 +210,11 @@ MAIN PAGE
 	margin-top: 1.5em;
 }
 
-// slider
-.slider {
-	margin-bottom: 30px;
+.logout-wrap {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
 }
-
-.image-slider {
-	max-height: 400px;
-
-	img {
-		width: 100%;
-	}
-}
-
 /*********************
 FOOTER STYLES
 *********************/

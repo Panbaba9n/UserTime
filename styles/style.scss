@@ -12,6 +12,9 @@ Date: Mar 2015
 // Sass variables
 @import "partials/variables";
 
+// Angular Material
+@import "../node_modules/angular-material/angular-material.scss";
+
 // Helpers
 @import "partials/helpers";
 
@@ -39,6 +42,9 @@ IMPORTING MODULES
 
 // forms (inputs & labels)
 @import "modules/forms";
+
+// tables (tables styles)
+@import "modules/tables";
 
 /*********************
 BASE (MOBILE) SIZE

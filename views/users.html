@@ -1,0 +1,57 @@
+<md-content layout-padding>
+	<div class="table" layout="row">
+		<ng-container layout="column" flex>
+			<div class="header-cell" matColumnDef="firstName">First Name</div>
+			<div class="cell" ng-repeat="user in users.usersList">
+				<md-button ui-sref="usersDetail({ userIndex: $index })" aria-label="{{user.firstName}}">{{user.firstName}}</md-button>
+				<md-divider ng-if="!$last"></md-divider>
+			</div>
+		</ng-container>
+		<ng-container layout="column" flex>
+			<div class="header-cell" matColumnDef="lastName">Last Name</div>
+			<div class="cell" ng-repeat="user in users.usersList">
+				<md-button ui-sref="usersDetail({ userIndex: $index })" aria-label="{{user.lastName}}">{{user.lastName}}</md-button>
+				<md-divider ng-if="!$last"></md-divider>
+			</div>
+		</ng-container>
+		<ng-container layout="column" flex>
+			<div class="header-cell" matColumnDef="timeOn">Time On</div>
+			<div class="cell" ng-repeat="user in users.usersList">
+				<md-button ui-sref="usersDetail({ userIndex: $index })" aria-label="{{user.timeOn}}">{{user.timeOn}}</md-button>
+				<md-divider ng-if="!$last"></md-divider>
+			</div>
+		</ng-container>
+		<ng-container layout="column" flex>
+			<div class="header-cell" matColumnDef="timeOff">Time Off</div>
+			<div class="cell" ng-repeat="user in users.usersList">
+				<md-button ui-sref="usersDetail({ userIndex: $index })" aria-label="{{user.timeOff}}">{{user.timeOff}}</md-button>
+				<md-divider ng-if="!$last"></md-divider>
+			</div>
+		</ng-container>
+	</div>
+
+
+	<div>
+		<p>Total number of users: {{users.usersList.length}}</p>
+	</div>
+
+</md-content>
+
+<h2>Second try</h2>
+
+<md-content layout-padding>
+	<md-list flex>
+		<md-list-item class="md-2-line" ng-repeat="user in users.usersList" ng-click="null">
+          <div class="md-list-item-text" layout="column">
+            <h3>First Name: <strong>{{ user.firstName }}</strong>, Last Name: <strong>{{ user.lastName }}</strong></h3>
+            <p>Time On: {{ user.timeOn }}, Time Off: {{user.timeOff}}</p>
+          </div>
+        </md-list-item>
+	</md-list>
+
+
+	<div>
+		<p>Total number of users: {{users.usersList.length}}</p>
+	</div>
+
+</md-content>

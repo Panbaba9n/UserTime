@@ -1,21 +1,19 @@
-main
-<!-- <md-content layout-padding>
+<md-content layout-padding>
 	<h2 class="text-center">Users Time</h2>
 	<form name="loginForm">
-
+		<span>Please enter your login information</span>
 		<div layout="column">
 			<md-input-container flex="50">
 				<label>Login</label>
-				<input required type="text" name="login" ng-model="home.user.username">
+				<input required type="text" name="login" ng-model="login.user.username">
 				<div ng-messages="loginForm.login.$error">
 					<div ng-message="required">This is required.</div>
 				</div>
 			</md-input-container>
 
-
 			<md-input-container flex="50">
 				<label>Password</label>
-				<input required type="password" name="password" ng-model="home.user.password"
+				<input required type="password" name="password" ng-model="login.user.password"
 				minlength="4" maxlength="20" multiple="" />
 
 				<div ng-messages="loginForm.password.$error" role="alert" multiple="">
@@ -32,17 +30,21 @@ main
 			</md-input-container>
 		</div>
 
-		<div ng-if="home.message" class="alert-help">{{home.message}}</div>
+		<div ng-if="login.message" class="alert-help">{{login.message}}</div>
 
 		<div>
-			<md-button type="submit" class="md-raised md-primary" ng-click="home.enterUser()"
-			ng-disabled="!home.user.username || !home.user.password">Submit</md-button>
+			<md-button type="submit" class="md-raised md-primary" ng-click="login.enterUser()"
+			ng-disabled="!login.user.username || !login.user.password">Submit</md-button>
 		</div>
 
-		<div>
-			<md-button class="md-raised" ng-click="home.exitUser()"
-			ng-disabled="!home.logout">Logout</md-button>
-		</div>
+		<a class="md-raised" ui-sref="login.splitModule">Only autorized users can see split Page!</a>
+
+		<div ui-view></div>
+
+		<!-- <div>
+			<md-button class="md-raised" ng-click="login.exitUser()"
+			ng-disabled="!login.logout">Logout</md-button>
+		</div> -->
 
 	</form>
-</md-content> -->
+</md-content>

@@ -1,0 +1,20 @@
+[
+	{
+		"firstName": "User1",
+		"lastName": "Dev1",
+		"timeOn": "2017-11-14 10:05",
+		"timeOff": "2017-11-14 11:05"
+	},
+	{
+		"firstName": "User2",
+		"lastName": "Dev2",
+		"timeOn": "2017-11-14 9:00",
+		"timeOff": "2017-11-14 11:00"
+	},
+	{
+		"firstName": "User3",
+		"lastName": "Dev3",
+		"timeOn": "2017-11-14 9:30",
+		"timeOff": "2017-11-14 17:00"
+	}
+]
