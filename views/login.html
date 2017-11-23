@@ -37,6 +37,10 @@
 			ng-disabled="!login.user.username || !login.user.password">Submit</md-button>
 		</div>
 
+		<a class="md-raised" ui-sref="login.splitModule">Only autorized users can see split Page!</a>
+
+		<div ui-view></div>
+
 		<!-- <div>
 			<md-button class="md-raised" ng-click="login.exitUser()"
 			ng-disabled="!login.logout">Logout</md-button>

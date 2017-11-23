@@ -18,6 +18,7 @@ router.post('/', function(req, res, next) {
     if(req.body.username && req.body.password){
         var username = req.body.username;
         var password = req.body.password;
+        console.log(req.body);
 
         var dbUser = {};
         UserInfo.find({ 'login': username }, function (err, docs) {
@@ -25,13 +26,14 @@ router.post('/', function(req, res, next) {
             dbUser = docs[0];
             if( ! dbUser ){
                 res.status(401).json({message:"no such user found"});
-            }
-            if(dbUser.password === req.body.password) {
-                var payload = {id: dbUser.id};
-                var token = authStrategy.jwt.sign(payload, authStrategy.jwtOptions.secretOrKey);
-                res.json({message: "ok", token: token});
             } else {
-                res.status(401).json({message:"passwords did not match"});
+                if(dbUser.password === req.body.password) {
+                    var payload = {id: dbUser.id};
+                    var token = authStrategy.jwt.sign(payload, authStrategy.jwtOptions.secretOrKey);
+                    res.json({message: "ok", token: token});
+                } else {
+                    res.status(401).json({message:"passwords did not match"});
+                }
             }
         });
     } else {

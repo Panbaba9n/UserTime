@@ -27,6 +27,9 @@
       'core',
       'login',
       'registration',
+
+      'splitModule',
+      
       // 'logout',
       'users',
       'usersDetail',
