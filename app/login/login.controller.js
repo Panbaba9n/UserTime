@@ -1,9 +1,5 @@
 /**
  * Login application controller
- *
- * You can use this controller for your whole app if it is small
- * or you can have separate controllers for each logical section
- * 
  */
 ;(function() {
 
@@ -11,10 +7,10 @@
     .module('login')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$scope', 'LocalStorage', 'QueryService', 'AuthTest', 'ToServer', 'Memory', '$interval', '$state'];
+  LoginController.$inject = ['$scope', 'AuthTest', 'ToServer', 'Memory', '$state'];
 
 
-  function LoginController($scope, LocalStorage, QueryService, AuthTest, ToServer, Memory, $interval, $state) {
+  function LoginController($scope, AuthTest, ToServer, Memory, $state) {
 
     // 'controller as' syntax
     var vm = this;
@@ -24,9 +20,7 @@
     vm.user.password = "";
     vm.message = false;
     vm.isAuth = false;
-
     vm.enterUser = enterUser;
-    // vm.exitUser = exitUser;
     vm.logout = AuthTest.isAuthentificaded();
 
     
@@ -42,7 +36,6 @@
         saveToken(response.token);
         saveUsername(vm.user.username);
         vm.isAuth = true;
-        // intervalDeleteToken();
         sendToParentCtrl();
         $state.go('users');
       }, function(err) {
@@ -53,13 +46,6 @@
         }
       });
     };
-
-    // function exitUser() {
-    //   AuthTest.logout();
-    //   vm.user = {};
-    //   vm.message = false;
-    //   vm.logout = false;
-    // };
 
     function saveToken(token) {
       return AuthTest.saveToken(token);

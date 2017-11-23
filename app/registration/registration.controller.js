@@ -11,10 +11,10 @@
     .module('registration')
     .controller('RegistrationController', RegistrationController);
 
-  RegistrationController.$inject = ['$scope', 'LocalStorage', 'QueryService', 'AuthTest', 'ToServer', 'Memory', '$interval', '$state'];
+  RegistrationController.$inject = ['ToServer', '$state'];
 
 
-  function RegistrationController($scope, LocalStorage, QueryService, AuthTest, ToServer, Memory, $interval, $state) {
+  function RegistrationController(ToServer, $state) {
 
     // 'controller as' syntax
     var vm = this;
@@ -33,7 +33,7 @@
         "password": vm.user.password
       }, function(response){
         vm.message = response.message;
-        $state.go('login');
+        // $state.go('login');
       }, function(err) {
         if(err.status == 401) {
           vm.message = err.data.message;

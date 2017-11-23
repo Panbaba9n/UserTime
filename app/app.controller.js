@@ -11,28 +11,29 @@
     .module('boilerplate')
     .controller('MainController', MainController);
 
-  MainController.$inject = ['$scope', 'LocalStorage', 'QueryService', 'AuthTest', 'ToServer', 'Memory', '$interval', '$state'];
+  MainController.$inject = ['$scope', 'AuthTest', 'Memory', '$timeout', '$state'];
 
 
-  function MainController($scope, LocalStorage, QueryService, AuthTest, ToServer, Memory, $interval, $state) {
+  function MainController($scope, AuthTest, Memory, $timeout, $state) {
 
+    var timer = {};
     // 'controller as' syntax
     var vm = this;
 
     vm.exitUser = exitUser;
     vm.logout = AuthTest.isAuthentificaded();
     vm.userName = Memory.getUsername();
-    vm.intervalDeleteToken = intervalDeleteToken;
+    vm.timeoutDeleteToken = timeoutDeleteToken;
 
     $scope.$on('myevent', scopeEvent);
 
-    
     ////////////  function definitions
     function exitUser() {
       AuthTest.logout();
       Memory.logout();
       vm.userName = Memory.getUsername();
-      vm.logout = false;
+      vm.logout = AuthTest.isAuthentificaded();
+      $timeout.cancel(timer); // if "logout" was clicked, not to state one more
       $state.go('login');
     };
 
@@ -43,20 +44,14 @@
       return Memory.saveUsername(username);
     };
 
-    function intervalDeleteToken() {
-      return $interval( function(){
-          AuthTest.logout();
-          Memory.logout();
-          vm.logout = AuthTest.isAuthentificaded();
-          vm.userName = Memory.getUsername();
-          $state.go('login');
-        }, 1000*60);
+    function timeoutDeleteToken() {
+      return $timeout( exitUser, 1000*15*60);
     };
 
     function scopeEvent(event, args) {
       vm.userName = Memory.getUsername();
       vm.logout = AuthTest.isAuthentificaded();
-      vm.intervalDeleteToken();
+      timer = vm.timeoutDeleteToken();
     };
 
   };

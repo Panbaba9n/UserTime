@@ -36,3 +36,22 @@
 	</div>
 
 </md-content>
+
+<h2>Second try</h2>
+
+<md-content layout-padding>
+	<md-list flex>
+		<md-list-item class="md-2-line" ng-repeat="user in users.usersList" ng-click="null">
+          <div class="md-list-item-text" layout="column">
+            <h3>First Name: <strong>{{ user.firstName }}</strong>, Last Name: <strong>{{ user.lastName }}</strong></h3>
+            <p>Time On: {{ user.timeOn }}, Time Off: {{user.timeOff}}</p>
+          </div>
+        </md-list-item>
+	</md-list>
+
+
+	<div>
+		<p>Total number of users: {{users.usersList.length}}</p>
+	</div>
+
+</md-content>

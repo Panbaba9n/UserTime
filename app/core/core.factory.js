@@ -9,13 +9,13 @@
     .module('core')
     .factory('Memory', Memory);
 
-  Memory.$inject = ['$http', 'localStorageService'];
+  Memory.$inject = ['localStorageService'];
 
 
   ////////////
 
 
-  function Memory($http, localStorageService) {
+  function Memory(localStorageService) {
 
     return {
       saveUsername: saveUsername,

@@ -1,9 +1,5 @@
 /**
- * Main application controller
- *
- * You can use this controller for your whole app if it is small
- * or you can have separate controllers for each logical section
- * 
+ * users controller
  */
 ;(function() {
 
@@ -11,10 +7,10 @@
     .module('users')
     .controller('UsersController', UsersController);
 
-  UsersController.$inject = ['LocalStorage', 'QueryService', 'Users'];
+  UsersController.$inject = ['Users'];
 
 
-  function UsersController(LocalStorage, QueryService, Users) {
+  function UsersController(Users) {
 
     // 'controller as' syntax
     var vm = this;

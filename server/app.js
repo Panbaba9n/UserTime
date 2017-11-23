@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require("passport");
+var cors = require('cors');
 
 
 var index = require('./routes/index');
@@ -38,6 +39,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// setting CORS headers
+var corsOptions = {
+  methods: ['GET', 'OPTIONS', 'POST']
+};
+app.use(cors(corsOptions));
 
 app.use('/', index);
 app.use('/users', users);
