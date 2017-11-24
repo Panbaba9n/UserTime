@@ -30,7 +30,7 @@ router.post('/', function(req, res, next) {
       res.status(401).json({message:"Such user already exist! Try another username."});
     } else {
       userCreate(username, password, function(cb) { // Make a user in DB
-        res.json({message: "Refustration compleate successfully, now you should login!"});
+        res.json({message: "Registration compleate successfully, now you should login!"});
       });
     }
   });

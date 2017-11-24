@@ -14,28 +14,3 @@ var UserInfoSchema = new Schema(
 
 //Export model
 module.exports = mongoose.model('UserInfo', UserInfoSchema);
-
-
-
-
-
-
-// Virtual for user's login
-// UserInfoSchema
-// .virtual('userLogin')
-// .get(function () {
-//   return this.login;
-// });
-// // Virtual for user's password
-// UserInfoSchema
-// .virtual('userPassword')
-// .get(function () {
-//   return this.password;
-// });
-
-// // Virtual for author's URL
-// UserInfoSchema
-// .virtual('url')
-// .get(function () {
-//   return '/userdata/' + this._id;
-// });
