@@ -57,7 +57,7 @@
 
   function Users($resource) {
 
-    return $resource('../../users/users.json', {}, {
+    return $resource('http://localhost:8000/users', {}, {
       query: {
         method: 'GET',
         params: {},

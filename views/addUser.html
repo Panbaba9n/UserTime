@@ -1,0 +1,16 @@
+<div layout="column" flex-gt-md="30" class="range layout-column flex-gt-md-30">
+	<md-input-container class="md-input-has-placeholder">
+		<label>Start Date/Time</label>
+		<input mdc-datetime-picker="" date="true" time="true" type="text"
+		placeholder="Date" max-date="dateTimeEnd" ng-model="dateTimeStart" class=" md-input"
+		readonly="readonly" id="input_0">
+		<div class="md-errors-spacer"></div>
+	</md-input-container>
+	<md-input-container class="md-input-has-placeholder">
+		<label>End Date/Time</label>
+		<input mdc-datetime-picker="" date="true" time="true" type="text"
+		placeholder="Date" min-date="dateTimeStart" ng-model="dateTimeEnd" class=" md-input" readonly="readonly"
+		id="input_1">
+		<div class="md-errors-spacer"></div>
+	</md-input-container>
+</div>

@@ -23,6 +23,7 @@
       'ngMaterial',
       'ngMessages',
       'LocalStorageModule',
+      // 'ngMaterialDatePicker',
 
       'core',
       'login',
@@ -34,6 +35,7 @@
 
       // 'logout',
       'users',
+      'addUser',
       'usersDetail',
       'security'
     ])
