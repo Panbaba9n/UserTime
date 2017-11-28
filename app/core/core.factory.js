@@ -62,6 +62,9 @@
         method: 'GET',
         params: {},
         isArray: true
+      },
+      sendNewInfo: {
+        method: 'POST'
       }
     });
 
