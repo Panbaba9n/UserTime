@@ -43,11 +43,6 @@
         templateUrl: 'views/users.html',
         controller: 'UsersController',
         controllerAs: 'users',
-        // resolve: {
-        //   simple: function() {
-        //     return false;
-        //   }
-        // }
       });
 
   }

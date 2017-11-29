@@ -65,6 +65,15 @@
       },
       sendNewInfo: {
         method: 'POST'
+      },
+      updateInfo: {
+        method: 'PUT'
+      },
+      cdelete: {
+        url: 'http://localhost:8000/users/:opacha',
+        method: 'DELETE',
+        params:{ opacha: '@id'}
+        // headers: {'test': 'test'}
       }
     });
 

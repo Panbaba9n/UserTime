@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // setting CORS headers
 var corsOptions = {
-  methods: ['GET', 'OPTIONS', 'POST']
+  methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'DELETE']
 };
 app.use(cors(corsOptions));
 

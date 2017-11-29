@@ -1,30 +1,30 @@
-<div layout="row" layout-xs="column" flex-gt-md="100" class="range layout-row flex-gt-md-100">
-	<form name="addInfoForm">
+<div layout="row" layout-xs="column" flex-gt-md="100" class="range layout-row flex-gt-md-100" ng-controller="UsersController as users">
+	<form name="editInfoForm">
 		<md-input-container class="md-input-has-placeholder">
 			<label>Set firstName</label>
-			<input name="firstName" type="text" placeholder="firstName" ng-model="addUser.info.newFirstName" class=" md-input" required>
-			<div ng-messages="addInfoForm.firstName.$error">
+			<input name="firstName" type="text" placeholder="firstName" ng-model="user.firstName" class=" md-input" required>
+			<div ng-messages="editInfoForm.firstName.$error">
 				<div ng-message="required">This is required.</div>
 			</div>
 		</md-input-container>
 		<md-input-container class="md-input-has-placeholder">
 			<label>Set lastName</label>
-			<input name="lastName" type="text" placeholder="lastName" ng-model="addUser.info.newLastName" class=" md-input" required>
-			<div ng-messages="addInfoForm.lastName.$error">
+			<input name="lastName" type="text" placeholder="lastName" ng-model="user.lastName" class=" md-input" required>
+			<div ng-messages="editInfoForm.lastName.$error">
 				<div ng-message="required">This is required.</div>
 			</div>
 		</md-input-container>
 		<md-input-container class="md-input-has-placeholder">
 			<label>Start Date/Time</label>
 			<input mdc-datetime-picker="" date="true" time="true" type="text"
-			placeholder="Date" max-date="addUser.info.dateTimeEnd" ng-model="addUser.info.dateTimeStart" class=" md-input"
+			placeholder="Date" max-date="user.timeOff" ng-model="user.timeOn" class=" md-input"
 			readonly="readonly" id="input_0">
 			<div class="md-errors-spacer"></div>
 		</md-input-container>
 		<md-input-container class="md-input-has-placeholder">
 			<label>End Date/Time</label>
 			<input mdc-datetime-picker="" date="true" time="true" type="text"
-			placeholder="Date" min-date="addUser.info.dateTimeStart" ng-model="addUser.info.dateTimeEnd" class=" md-input" readonly="readonly"
+			placeholder="Date" min-date="user.timeOn" ng-model="user.timeOff" class=" md-input" readonly="readonly"
 			id="input_1">
 			<div class="md-errors-spacer"></div>
 		</md-input-container>
@@ -32,5 +32,6 @@
 </div>
 
 <div layout="row" flex-gt-md="5" class="range layout-row flex-gt-md-5">
-<md-button ng-disabled="!addUser.info.newFirstName || !addUser.info.newLastName || !addUser.info.dateTimeStart || !addUser.info.dateTimeEnd" ng-click="addUser.enterInfo();" class="md-raised">Send Info</md-button>
+<md-button ng-click="users.cancel(user)" class="md-raised">Cancel</md-button>
+<md-button ng-disabled="!user.firstName || !user.lastName || !user.timeOn || !user.timeOff" ng-click="users.save(user)" class="md-raised">Save</md-button>
 </div>
